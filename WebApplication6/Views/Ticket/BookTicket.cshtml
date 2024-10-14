@@ -1,0 +1,32 @@
+﻿@model Tazkarty.ViewModel.BookTicketViewModel
+
+@{
+    ViewData["Title"] = "Book Ticket";
+}
+
+<div class="container mt-4">
+    <h2>@ViewData["Title"]</h2>
+
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">@Model.Match.TeamA vs @Model.Match.TeamB</h5>
+            <p class="card-text"><strong>Date:</strong> @Model.Match.MatchDate.ToString("yyyy-MM-dd")</p>
+            <p class="card-text"><strong>Time:</strong> @Model.Match.MatchDate.ToString("HH:mm")</p>
+            <p class="card-text"><strong>Location:</strong> @Model.Location</p>
+            <p class="card-text"><strong>Price:</strong> @Model.Price.ToString("C")</p>
+
+            <!-- Add more details if needed -->
+
+            <form asp-action="ConfirmBooking" asp-controller="Ticket" method="post">
+                <input type="hidden" name="MatchId" value="@Model.Match.MatchId" />
+                <input type="hidden" name="Location" value="@Model.Location" />
+                <input type="hidden" name="Price" value="@Model.Price" />
+
+                <div class="d-flex justify-content-between mt-3">
+                    <button type="submit" class="btn btn-success">Confirm Booking</button>
+                    <a asp-controller="Match" asp-action="Details" asp-route-id="@Model.Match.MatchId" class="btn btn-info btn-sm">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

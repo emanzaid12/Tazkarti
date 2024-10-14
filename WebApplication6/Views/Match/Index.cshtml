@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Tazkarty.Models.Match>
+
+@{
+    ViewData["Title"] = "Match List";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">Match List</h2>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>Team A</th>
+                    <th>Team B</th>
+                    <th>Match Date & Time</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var match in Model)
+                {
+                    <tr>
+                        <td>@match.TeamA</td>
+                        <td>@match.TeamB</td>
+                        <td>@match.MatchDate.ToString("yyyy-MM-dd HH:mm")</td>
+                        <td>
+                            <a asp-controller="Match" asp-action="Details" asp-route-id="@match.MatchId" class="btn btn-info btn-sm">Details</a>
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <a asp-controller="Match" asp-action="Delete" asp-route-id="@match.MatchId" class="btn btn-danger btn-sm">Delete</a>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

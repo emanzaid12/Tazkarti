@@ -1,0 +1,28 @@
+﻿@model Tazkarty.Models.Match
+
+@{
+    ViewData["Title"] = "Match Details";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">Match Details</h2>
+
+    <div class="card">
+        <div class="card-body">
+            <h3 class="card-title">@Model.TeamA vs @Model.TeamB</h3>
+            <p class="card-text">
+                <strong>Date:</strong> @Model.MatchDate.ToString("yyyy-MM-dd ")<br />
+                <strong>Time:</strong> @Model.MatchDate.ToString("HH:mm")
+            </p>
+
+            @if (User.Identity.IsAuthenticated)
+            {
+                <div class="btn-group" role="group">
+                    <a asp-controller="Ticket" asp-action="BookTicket" asp-route-matchId="@Model.MatchId" class="btn btn-primary me-3">Book Ticket</a>
+                    <a asp-action="Index" asp-controller="Match" class="btn btn-secondary">Cancel</a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

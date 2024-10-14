@@ -1,0 +1,32 @@
+﻿@model Tazkarty.Request.LoginRequest
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="container vh-100 d-flex justify-content-center align-items-md-start">
+    <div class="card" style="max-width: 500px; width: 100%;">
+        <div class="card-header text-center">
+            <h2 class="mb-0">@ViewData["Title"]</h2>
+        </div>
+        <div class="card-body">
+            <form asp-action="Login" method="post">
+                <div class="form-group">
+                    <label asp-for="Username" class="form-label"></label>
+                    <input asp-for="Username" class="form-control form-control-lg" />
+                    <span asp-validation-for="Username" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password" class="form-label"></label>
+                    <input asp-for="Password" class="form-control form-control-lg" type="password" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn m-3 btn-primary btn-block btn-lg">Login</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
